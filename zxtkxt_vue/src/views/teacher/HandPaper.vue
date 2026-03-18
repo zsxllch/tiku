@@ -190,9 +190,33 @@
             <el-icon><component :is="showChart ? 'ArrowUp' : 'ArrowDown'" /></el-icon>
           </div>
           
-          <div v-show="showChart" style="border: 1px solid #ebeef5; border-top: none; padding: 20px; background: white; display: flex;">
-            <div id="handAnalysisChart" style="width: 50%; height: 400px;"></div>
-            <div id="handLevelChart" style="width: 50%; height: 400px;"></div>
+          <div v-show="showChart" style="border: 1px solid #ebeef5; border-top: none; padding: 20px; background: white; display: flex; flex-direction: column;">
+            <div style="margin-bottom: 20px; padding: 15px; background: #fdfdfd; border: 1px solid #ebeef5; border-radius: 4px;">
+              <el-row :gutter="20">
+                <el-col :span="12">
+                  <div style="font-weight: bold; margin-bottom: 10px;">
+                    知识点覆盖度：<span style="color: #409EFF">{{ pointCoverage }}</span>
+                  </div>
+                  <div style="font-size: 14px; color: #606266; margin-bottom: 10px;">
+                    <span style="font-weight: bold;">未包含的知识点：</span>
+                    <span v-if="uncoveredPoints.length === 0">无</span>
+                    <span v-else>{{ uncoveredPoints.join('、') }}</span>
+                  </div>
+                </el-col>
+                <el-col :span="12">
+                  <div style="font-weight: bold; margin-bottom: 10px;">
+                    试卷难度：<span style="color: #E6A23C">{{ paperLevel }}</span>
+                  </div>
+                  <div style="font-weight: bold;">
+                    试卷相似度：<span style="color: #67C23A">{{ paperRepeatability }}</span>
+                  </div>
+                </el-col>
+              </el-row>
+            </div>
+            <div style="display: flex; width: 100%;">
+              <div id="handAnalysisChart" style="width: 50%; height: 400px;"></div>
+              <div id="handLevelChart" style="width: 50%; height: 400px;"></div>
+            </div>
           </div>
         </div>
 
@@ -414,13 +438,13 @@ export default {
       activeLevel: '',
       colorMap: {}, // 存储扇区颜色
       levelColorMap: {}, // 存储难度扇区颜色
+      recentPaperList: []
     }
   },
   created() {
     this.load();
     this.getCourseName();
     this.getBankName();
-    this.getPointName();
     
     // 检查是否是编辑模式
     const paperStr = this.$route.query.paper;
@@ -450,19 +474,67 @@ export default {
     },
     shortList() {
       return this.addedQuestions.filter(q => q.questionType === '简答题');
+    },
+    analysisCourseName() {
+      if (this.addedQuestions.length > 0 && this.addedQuestions[0].courseType) {
+        return this.addedQuestions[0].courseType;
+      }
+      if (this.form.courseName) {
+        return this.form.courseName;
+      }
+      return '';
+    },
+    pointCoverage() {
+      if (!this.dataPointList || this.dataPointList.length === 0) return 0;
+      const coveredPoints = new Set(this.addedQuestions.map(q => q.questionPoint).filter(Boolean));
+      return Number((coveredPoints.size / this.dataPointList.length).toFixed(2));
+    },
+    uncoveredPoints() {
+      if (!this.dataPointList || this.dataPointList.length === 0) return [];
+      const coveredPoints = new Set(this.addedQuestions.map(q => q.questionPoint).filter(Boolean));
+      return this.dataPointList.filter(point => !coveredPoints.has(point));
+    },
+    paperLevel() {
+      if (this.totalScore === 0) return 0;
+      let difficulty = 0;
+      this.addedQuestions.forEach(question => {
+        difficulty += this.getDifficultyNum(question.questionLevel) * this.getScoreByType(question.questionType);
+      });
+      return Number((difficulty / this.totalScore).toFixed(2));
+    },
+    paperRepeatability() {
+      const selectedIds = this.getCurrentQuestionIds();
+      if (selectedIds.length === 0) return 0;
+      const basePapers = this.recentPaperList
+        .filter(p => !this.form.paperId || p.paperId !== this.form.paperId)
+        .sort((a, b) => b.paperId - a.paperId)
+        .slice(0, 2);
+      if (basePapers.length < 2) return 0;
+      const paperAIds = this.parsePaperQuestionIds(basePapers[0]);
+      const paperBIds = this.parsePaperQuestionIds(basePapers[1]);
+      return Number(this.calculateCommonElementsRatio(selectedIds, paperAIds, paperBIds).toFixed(2));
     }
   },
   watch:{
     addedQuestions: {
-      handler(val) {
-        if (val.length > 0) {
-          // 数据变化时更新图表
-          this.$nextTick(() => {
-            this.initChart();
-          });
-        }
+      handler() {
+        this.$nextTick(() => {
+          this.initChart();
+        });
       },
       deep: true
+    },
+    analysisCourseName: {
+      handler(val) {
+        if (!val) {
+          this.dataPointList = [];
+          this.recentPaperList = [];
+          return;
+        }
+        this.getPointName(val);
+        this.getRecentPapers(val);
+      },
+      immediate: true
     },
     questionType(){
       if (this.questionType == '填空题' || this.questionType == '判断题' ||
@@ -476,6 +548,51 @@ export default {
     }
   },
   methods:{
+    getDifficultyNum(level) {
+      if (level === '容易') return 1.0;
+      if (level === '较易') return 2.0;
+      if (level === '中等') return 3.0;
+      if (level === '较难') return 4.0;
+      return 5.0;
+    },
+    getCurrentQuestionIds() {
+      return this.addedQuestions
+        .map(item => Number(item.questionId))
+        .filter(item => !Number.isNaN(item));
+    },
+    parsePaperQuestionIds(paper) {
+      const group = [
+        paper.choiceQuestion,
+        paper.multiQuestion,
+        paper.blankFillingQuestion,
+        paper.judgeQuestion,
+        paper.shortQuestion
+      ]
+        .filter(Boolean)
+        .join(',');
+      if (!group) return [];
+      return group
+        .split(',')
+        .map(item => Number(item))
+        .filter(item => !Number.isNaN(item));
+    },
+    calculateCommonElementsRatio(arrayA, arrayB, arrayC) {
+      const uniqueElements = new Set(arrayA);
+      let duplicateCount = 0;
+      arrayB.forEach(num => {
+        if (uniqueElements.has(num)) {
+          duplicateCount += 1;
+        }
+      });
+      arrayC.forEach(num => {
+        if (uniqueElements.has(num)) {
+          duplicateCount += 1;
+        }
+      });
+      const totalElements = arrayA.length + arrayB.length + arrayC.length;
+      if (totalElements === 0) return 0;
+      return duplicateCount / totalElements;
+    },
 
     // 查询
     load(){
@@ -861,11 +978,27 @@ export default {
         this.dataBankList=res.data;
       })
     },
-    getPointName(){
-      request.get("/point/getPointName").then(res=>{
+    getPointName(courseType){
+      if (!courseType) return;
+      request.get("/point/getPointName",{ params: {
+          courseType: courseType
+        }}).then(res=>{
         this.dataPointList=res.data;
       })
     },
+    getRecentPapers(courseType) {
+      if (!courseType) return;
+      request.get("/paper/queryPaper", {
+        params: {
+          pageNum: 1,
+          pageSize: 200,
+          courseType: courseType,
+          paperName: ''
+        }
+      }).then(res => {
+        this.recentPaperList = res.data?.records || [];
+      })
+    }
   },
 }
 

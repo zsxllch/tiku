@@ -8,9 +8,33 @@
         <el-icon><component :is="showChart ? 'ArrowUp' : 'ArrowDown'" /></el-icon>
       </div>
       
-      <div v-show="showChart" style="border: 1px solid #ebeef5; border-top: none; padding: 20px; background: white; display: flex;">
-        <div id="analysisChart" style="width: 50%; height: 400px;"></div>
-        <div id="levelChart" style="width: 50%; height: 400px;"></div>
+      <div v-show="showChart" style="border: 1px solid #ebeef5; border-top: none; padding: 20px; background: white; display: flex; flex-direction: column;">
+        <div style="margin-bottom: 20px; padding: 15px; background: #fdfdfd; border: 1px solid #ebeef5; border-radius: 4px;">
+          <el-row :gutter="20">
+            <el-col :span="12">
+              <div style="font-weight: bold; margin-bottom: 10px;">
+                知识点覆盖度：<span style="color: #409EFF">{{ pointCoverage }}</span>
+              </div>
+              <div style="font-size: 14px; color: #606266; margin-bottom: 10px;">
+                <span style="font-weight: bold;">未包含的知识点：</span>
+                <span v-if="uncoveredPoints.length === 0">无</span>
+                <span v-else>{{ uncoveredPoints.join('、') }}</span>
+              </div>
+            </el-col>
+            <el-col :span="12">
+              <div style="font-weight: bold; margin-bottom: 10px;">
+                试卷难度：<span style="color: #E6A23C">{{ paperLevel }}</span>
+              </div>
+              <div style="font-weight: bold;">
+                试卷相似度：<span style="color: #67C23A">{{ paperRepeatability }}</span>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+        <div style="display: flex; width: 100%;">
+          <div id="analysisChart" style="width: 50%; height: 400px;"></div>
+          <div id="levelChart" style="width: 50%; height: 400px;"></div>
+        </div>
       </div>
     </div>
 
@@ -174,6 +198,8 @@ export default {
       activeLevel: '',
       colorMap: {}, // 存储扇区颜色
       levelColorMap: {}, // 存储难度扇区颜色
+      dataPointList: [],
+      recentPaperList: []
     }
   },
   computed: {
@@ -185,22 +211,139 @@ export default {
       if (this.judgeList && this.judgeList.length > 0) score += this.judgeList.length * (this.paper.judgeScore || 0);
       if (this.shortList && this.shortList.length > 0) score += this.shortList.length * (this.paper.shortScore || 0);
       return score;
+    },
+    allQuestions() {
+      return [...this.choiceList, ...this.multiList, ...this.blankList, ...this.judgeList, ...this.shortList];
+    },
+    pointCoverage() {
+      if (!this.dataPointList || this.dataPointList.length === 0) return 0;
+      const coveredPoints = new Set(this.allQuestions.map(q => q.questionPoint).filter(Boolean));
+      return Number((coveredPoints.size / this.dataPointList.length).toFixed(2));
+    },
+    uncoveredPoints() {
+      if (!this.dataPointList || this.dataPointList.length === 0) return [];
+      const coveredPoints = new Set(this.allQuestions.map(q => q.questionPoint).filter(Boolean));
+      return this.dataPointList.filter(point => !coveredPoints.has(point));
+    },
+    paperLevel() {
+      if (this.totalScore === 0) return 0;
+      let difficulty = 0;
+      this.allQuestions.forEach(question => {
+        difficulty += this.getDifficultyNum(question.questionLevel) * this.getScoreByType(question.questionType);
+      });
+      return Number((difficulty / this.totalScore).toFixed(2));
+    },
+    paperRepeatability() {
+      const selectedIds = this.getCurrentQuestionIds();
+      if (selectedIds.length === 0) return 0;
+      const basePapers = this.recentPaperList
+        .filter(p => !this.paper.paperId || p.paperId !== this.paper.paperId)
+        .sort((a, b) => b.paperId - a.paperId)
+        .slice(0, 2);
+      if (basePapers.length < 2) return 0;
+      const paperAIds = this.parsePaperQuestionIds(basePapers[0]);
+      const paperBIds = this.parsePaperQuestionIds(basePapers[1]);
+      return Number(this.calculateCommonElementsRatio(selectedIds, paperAIds, paperBIds).toFixed(2));
+    }
+  },
+  watch: {
+    allQuestions: {
+      handler() {
+        this.$nextTick(() => {
+          this.initChart();
+        });
+      },
+      deep: true
     }
   },
   created() {
     this.paper=JSON.parse(this.$route.query.paper);
-    // alert(this.paper.paperName);
+    if (this.paper.courseName) {
+      this.getPointName(this.paper.courseName);
+      this.getRecentPapers(this.paper.courseName);
+    }
     this.getChoiceQuestion();
     this.getMultiQuestion();
     this.getBlankFillingQuestion();
     this.getJudgeQuestion();
     this.getShortQuestion();
-    // 延迟初始化图表，确保数据已加载（简单处理，理想情况是用 Promise.all）
     setTimeout(() => {
-        this.initChart();
-    }, 1000);
+      this.initChart();
+    }, 300);
   },
   methods:{
+    getScoreByType(type) {
+      if (type === '单选题') return Number(this.paper.choiceScore || 0);
+      if (type === '多选题') return Number(this.paper.multiScore || 0);
+      if (type === '填空题') return Number(this.paper.blankFillingScore || 0);
+      if (type === '判断题') return Number(this.paper.judgeScore || 0);
+      if (type === '简答题') return Number(this.paper.shortScore || 0);
+      return 0;
+    },
+    getDifficultyNum(level) {
+      if (level === '容易') return 1.0;
+      if (level === '较易') return 2.0;
+      if (level === '中等') return 3.0;
+      if (level === '较难') return 4.0;
+      return 5.0;
+    },
+    getCurrentQuestionIds() {
+      return this.allQuestions
+        .map(item => Number(item.questionId))
+        .filter(item => !Number.isNaN(item));
+    },
+    parsePaperQuestionIds(paper) {
+      const group = [
+        paper.choiceQuestion,
+        paper.multiQuestion,
+        paper.blankFillingQuestion,
+        paper.judgeQuestion,
+        paper.shortQuestion
+      ]
+        .filter(Boolean)
+        .join(',');
+      if (!group) return [];
+      return group
+        .split(',')
+        .map(item => Number(item))
+        .filter(item => !Number.isNaN(item));
+    },
+    calculateCommonElementsRatio(arrayA, arrayB, arrayC) {
+      const uniqueElements = new Set(arrayA);
+      let duplicateCount = 0;
+      arrayB.forEach(num => {
+        if (uniqueElements.has(num)) {
+          duplicateCount += 1;
+        }
+      });
+      arrayC.forEach(num => {
+        if (uniqueElements.has(num)) {
+          duplicateCount += 1;
+        }
+      });
+      const totalElements = arrayA.length + arrayB.length + arrayC.length;
+      if (totalElements === 0) return 0;
+      return duplicateCount / totalElements;
+    },
+    getPointName(courseType){
+      request.get("/point/getPointName",{ params: {
+          courseType: courseType
+        }}).then(res=>{
+        this.dataPointList=res.data;
+      })
+    },
+    getRecentPapers(courseType) {
+      request.get("/paper/queryPaper", {
+        params: {
+          pageNum: 1,
+          pageSize: 200,
+          courseType: courseType,
+          paperName: ''
+        }
+      }).then(res => {
+        this.recentPaperList = res.data?.records || [];
+      })
+    },
     getChoiceQuestion(){
       request.get("/question/getQuestions",{
         params:{
@@ -296,8 +439,13 @@ export default {
         const count = acc[cur.questionLevel] || 0;
         return {...acc, [cur.questionLevel]: count + 1};
       }, {})).map(([name, value]) => ({name, value}));
-      // 跳转到目标页面并带上参数
-      this.$router.push({ path: '/analysePaper', query: { data:JSON.stringify({'resultPoint':resultPoint,'resultLevel':resultLevel,'paper':this.paper})}  });
+      const paper = {
+        ...this.paper,
+        pointCoverage: this.pointCoverage,
+        paperLevel: this.paperLevel,
+        repeatability: this.paperRepeatability
+      };
+      this.$router.push({ path: '/analysePaper', query: { data:JSON.stringify({'resultPoint':resultPoint,'resultLevel':resultLevel,'paper':paper})}  });
     },
     
     // 初始化或更新图表

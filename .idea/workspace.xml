@@ -7,8 +7,7 @@
     <list default="true" id="7721dff7-0f59-40eb-b934-d950f22ff32d" name="Changes" comment="yd commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logs/zxtkxt/spring.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/zxtkxt/spring.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/zxtkxt_vue/src/views/teacher/HandPaper.vue" beforeDir="false" afterPath="$PROJECT_DIR$/zxtkxt_vue/src/views/teacher/HandPaper.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/zxtkxt_vue/src/views/teacher/LookPaper.vue" beforeDir="false" afterPath="$PROJECT_DIR$/zxtkxt_vue/src/views/teacher/LookPaper.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zxtkxt_vue/src/views/teacher/TeacherQueryQuestion.vue" beforeDir="false" afterPath="$PROJECT_DIR$/zxtkxt_vue/src/views/teacher/TeacherQueryQuestion.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -284,6 +283,7 @@
       <workItem from="1773643344738" duration="9704000" />
       <workItem from="1773734514421" duration="10015000" />
       <workItem from="1773840039326" duration="630000" />
+      <workItem from="1773846785109" duration="1248000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1684652683735</created>

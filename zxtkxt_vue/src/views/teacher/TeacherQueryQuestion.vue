@@ -187,13 +187,16 @@
             <el-input v-model="ruleForm.questionDesc" type="textarea" />
           </el-form-item>
           
-          <el-form-item label="图片" prop="questionImage" :label-width="formLabelWidth">
+                    <el-form-item label="图片" prop="questionImage" :label-width="formLabelWidth">
             <el-upload
                 action="/api/file/upload"
                 :show-file-list="false"
                 :on-success="handleUploadSuccess"
                 :before-upload="beforeUpload">
-              <img v-if="ruleForm.questionImage" :src="ruleForm.questionImage" class="avatar" style="width: 100px; height: 100px; object-fit: contain;">
+              <div v-if="ruleForm.questionImage" style="display: flex; align-items: center;">
+                <img :src="ruleForm.questionImage" class="avatar" style="width: 100px; height: 100px; object-fit: contain; margin-right: 10px;">
+                <el-button type="danger" size="small" @click.stop="deleteImage">删除</el-button>
+              </div>
               <el-icon v-else class="avatar-uploader-icon"><Plus /></el-icon>
             </el-upload>
           </el-form-item>
@@ -276,6 +279,9 @@ export default {
     }
   },
   methods:{
+        deleteImage(){
+      this.ruleForm.questionImage = '';
+    },
     // 查询
     load(){
       request.get("/question/queryQuestion", {

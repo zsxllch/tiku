@@ -13,20 +13,9 @@
           <div style="line-height: 32px;">
 
             <div class="title" style="padding-top: 0px">系统介绍</div>
-            在线题库系统是一款基于SpringBoot+Vue开发的题库系统。提供试题管理和自动组卷功能。
+            本系统是一款基于SpringBoot+Vue技术开发的题库系统。提供试题管理和自动组卷功能。
 
-            <div class="title">技术栈</div>
-            <div class="tags">
-              <el-tag>SpringBoot 2</el-tag>
-              <el-tag>Vue3</el-tag>
-              <el-tag>Mysql</el-tag>
-              <el-tag>MyBatis Plus</el-tag>
-              <el-tag>Redis</el-tag>
-              <el-tag>JWT</el-tag>
-              <el-tag>Element plus</el-tag>
-            </div>
-
-            <div class="title">产品功能</div>
+            <div class="title">功能</div>
             <div>
               <div>系统完善：完善的前后端分离架构、规范的接口文档</div>
               <div>基础功能：系统配置、用户管理、角色管理等。</div>
@@ -96,10 +85,6 @@ export default {
   padding-top: 20px;
   margin-bottom: 10px;
   border-bottom: #eee 1px dotted;
-}
-
-.tags span{
-  margin-right: 10px;
 }
 
 .box a{

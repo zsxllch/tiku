@@ -125,16 +125,27 @@ public class Ant {
 
     //试卷相似度计算
     public double calculateRepeatability(){
-        Paper paper = paperlist.get(0);
-        Paper paper1 = paperlist.get(1);
-        int[] ints = change(paper);
-        int[] ints1 = change(paper1);
+        // 如果没有历史试卷，直接返回 0
+        if (paperlist == null || paperlist.isEmpty()) {
+            return 0.0;
+        }
+
+        int[] ints = new int[0];
+        if (paperlist.size() > 0) {
+            ints = change(paperlist.get(0));
+        }
+
+        int[] ints1 = new int[0];
+        if (paperlist.size() > 1) {
+            ints1 = change(paperlist.get(1));
+        }
+
         int [] selected = new int[selectedQuestions.length];
 
         for (int i = 0; i < selectedQuestions.length; i++) {
             selected[i]=questionList.get(selectedQuestions[i]).getQuestionId();
         }
-        double repeatability = calculateCommonElementsRatio(selectedQuestions, ints, ints1);
+        double repeatability = calculateCommonElementsRatio(selected, ints, ints1);
         return repeatability;
     }
 

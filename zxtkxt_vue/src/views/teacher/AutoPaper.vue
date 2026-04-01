@@ -1,6 +1,6 @@
 <template>
   <div id="cc">
-    <div id="app">
+    <div id="app" v-loading="loading" element-loading-text="正在使用算法组卷中，请耐心等待..." element-loading-background="rgba(255, 255, 255, 0.8)">
       <div style="flex: 1;margin-left: 40px">请输入您的要求，系统会自动生成试卷：</div>
       <br/>
       <el-form :model="form" status-icon :rules="rules" size="large" ref="form" label-width="100px"  style="margin-left: 40px">
@@ -137,11 +137,13 @@
 <script>
 import request from "@/utils/request";
 import Cookies from "js-cookie";
+import { ElMessageBox } from 'element-plus';
 
 export default {
   name: "AutoPaper",
   data() {
     return {
+      loading: false,
       dataList:[],
       formLabelWidth:110,
       form: {
@@ -172,28 +174,31 @@ export default {
     createPaper(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          alert("正在生成中，请等待片刻");
+          this.loading = true;
           request.post('/paper/createPaper', this.form,{
-            timeout: 20000 // 超时时间为20秒
+            timeout: 60000 // 超时时间设为60秒，算法组卷可能较慢
           }).then(res => {
+            this.loading = false;
             if (res.code == 0) {
-              //小提示
-              this.$message({
-                type: "success",
-                message: res.msg
+              ElMessageBox.alert(res.msg || '组卷成功', '成功', {
+                confirmButtonText: '确定',
+                type: 'success',
+                callback: () => {
+                  this.resetForm('form');
+                }
               });
-              this.resetForm('form');
             } else {
-              //小提示
-              this.$message({
-                type: "error",
-                message: res.msg
-              })
+              ElMessageBox.alert(res.msg || '组卷失败', '错误', {
+                confirmButtonText: '确定',
+                type: 'error'
+              });
             }
-            // 处理响应
           }).catch(error => {
-            // 处理错误
-            alert("不好意思失败了")
+            this.loading = false;
+            ElMessageBox.alert('不好意思失败了，请稍后重试', '请求异常', {
+              confirmButtonText: '确定',
+              type: 'error'
+            });
           })
         } else {
           console.log('error submit!!');

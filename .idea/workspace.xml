@@ -7,8 +7,9 @@
     <list default="true" id="7721dff7-0f59-40eb-b934-d950f22ff32d" name="Changes" comment="yd commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logs/zxtkxt/spring.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/zxtkxt/spring.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/zxtkxt/src/main/java/com/example/zxtkxt/service/Ant.java" beforeDir="false" afterPath="$PROJECT_DIR$/zxtkxt/src/main/java/com/example/zxtkxt/service/Ant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/zxtkxt_vue/src/views/teacher/Dashboard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/zxtkxt_vue/src/views/teacher/Dashboard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zxtkxt/src/main/java/com/example/zxtkxt/controller/QuestionBankController.java" beforeDir="false" afterPath="$PROJECT_DIR$/zxtkxt/src/main/java/com/example/zxtkxt/controller/QuestionBankController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zxtkxt_vue/src/components/TeacherAside.vue" beforeDir="false" afterPath="$PROJECT_DIR$/zxtkxt_vue/src/components/TeacherAside.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zxtkxt_vue/src/views/teacher/TeacherQuestionBank.vue" beforeDir="false" afterPath="$PROJECT_DIR$/zxtkxt_vue/src/views/teacher/TeacherQuestionBank.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,29 +55,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "Spring Boot.ZxtkxtApplication.executor": "Run",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/zsxll/Desktop/tiku",
-    "nodejs_package_manager_path": "npm",
-    "npm.serve.executor": "Run",
-    "project.structure.last.edited": "项目",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "MavenSettings",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;Spring Boot.ZxtkxtApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/zsxll/Desktop/tiku&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.serve.executor&quot;: &quot;Run&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;项目&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\SpringBootCode\bysj\zxtkxt_vue\public\images" />
@@ -285,7 +286,7 @@
       <workItem from="1773734514421" duration="10015000" />
       <workItem from="1773840039326" duration="630000" />
       <workItem from="1773846785109" duration="1248000" />
-      <workItem from="1775023257356" duration="3983000" />
+      <workItem from="1775023257356" duration="7028000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1684652683735</created>

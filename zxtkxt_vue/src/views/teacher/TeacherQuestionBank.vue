@@ -19,14 +19,14 @@
       <el-table-column prop="blankFillingCount" label="填空题数量" width="100" />
       <el-table-column prop="judgeCount" label="判断题数量" width="100" />
       <el-table-column prop="shortCount" label="简答题数量" width="100" />
-      <el-table-column prop="userName" label="题库所有者" width="100" />
-      <el-table-column prop="bankRemark" label="题库备注" width="100" />
+      <el-table-column prop="userName" label="创建者" width="100" />
+      <el-table-column prop="bankRemark" label="题库备注" width="150" show-overflow-tooltip="true" />
       <el-table-column prop="createTime" label="创建时间" />
 
       <el-table-column fixed="right" label="操作" width="150">
         <template #default="scope">
           <el-button  type="primary" size="small" @click="handleEdit(scope.row)">编辑</el-button>
-          <el-popconfirm title="你确定删除吗?" @confirm="handleDelete(scope.row.bankId)">
+          <el-popconfirm title="确定要删除此题库吗？注意：这将会删除该题库下的所有试题！" @confirm="handleDelete(scope.row.bankId)">
             <template #reference="scope">
               <el-button  type="danger" size="small" >删除</el-button>
             </template>

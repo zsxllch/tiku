@@ -24,6 +24,9 @@ public class QuestionBankController extends BaseController {
 
     @Autowired
     private QuestionBankMapper questionBankMapper;
+    
+    @Autowired
+    private com.example.zxtkxt.mapper.QuestionMapper questionMapper;
 
     @Autowired
     private HttpServletRequest request;
@@ -46,6 +49,28 @@ public class QuestionBankController extends BaseController {
         }
 
         Page<QuestionBank> userPage = questionBankMapper.selectPage(new Page<>(pageNum, pageSize), wrapper);
+        
+        // 动态统计各个题库的题目数量
+        for (QuestionBank bank : userPage.getRecords()) {
+            LambdaQueryWrapper<Question> qWrapper = Wrappers.lambdaQuery();
+            qWrapper.eq(Question::getBankName, bank.getBankName());
+            List<Question> questions = questionMapper.selectList(qWrapper);
+            
+            int choice = 0, multi = 0, blank = 0, judge = 0, shortQ = 0;
+            for (Question q : questions) {
+                if ("单选题".equals(q.getQuestionType())) choice++;
+                else if ("多选题".equals(q.getQuestionType())) multi++;
+                else if ("填空题".equals(q.getQuestionType())) blank++;
+                else if ("判断题".equals(q.getQuestionType())) judge++;
+                else if ("简答题".equals(q.getQuestionType())) shortQ++;
+            }
+            bank.setChoiceCount(choice);
+            bank.setMultiCount(multi);
+            bank.setBlankFillingCount(blank);
+            bank.setJudgeCount(judge);
+            bank.setShortCount(shortQ);
+        }
+        
         return success(userPage);
     }
 
@@ -57,6 +82,21 @@ public class QuestionBankController extends BaseController {
     @DeleteMapping("/{id}")
     public ApiRest<String> delete(@PathVariable Long id) {
         try {
+            QuestionBank bank = questionBankMapper.selectById(id);
+            if (bank == null) {
+                return failure("题库不存在");
+            }
+            String userName = (String) request.getSession().getAttribute("userName");
+            if (!"admin".equals(userName) && !bank.getUserName().equals(userName)) {
+                return failure("您没有权限删除该题库，仅创建者可删除！");
+            }
+            
+            // 级联删除对应的题目
+            LambdaQueryWrapper<Question> questionWrapper = Wrappers.<Question>lambdaQuery()
+                    .eq(Question::getBankName, bank.getBankName());
+            questionMapper.delete(questionWrapper);
+            
+            // 删除题库
             questionBankMapper.deleteById(id);
         }catch (Exception e){
             return failure("删除失败");
@@ -88,7 +128,16 @@ public class QuestionBankController extends BaseController {
     @ApiOperation(value = "新增题库")
     @RequestMapping("/save")
     public ApiRest<String> save(@RequestBody QuestionBank questionBank ){
+        String userName = (String) request.getSession().getAttribute("userName");
+        questionBank.setUserName(userName);
         questionBank.setCreateTime(new Date());
+        // 初始化各种题型数量为0
+        questionBank.setChoiceCount(0);
+        questionBank.setMultiCount(0);
+        questionBank.setBlankFillingCount(0);
+        questionBank.setJudgeCount(0);
+        questionBank.setShortCount(0);
+        
         try {
             questionBankMapper.insert(questionBank);
         }catch (Exception e){

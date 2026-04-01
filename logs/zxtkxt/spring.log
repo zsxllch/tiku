@@ -4245,3 +4245,86 @@ java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
 2026-04-01 16:48:18.935  WARN 3144 --- [http-nio-8088-exec-10] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/zxtk_db?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true, version : 1.2.5, lastPacketReceivedIdleMillis : 992940
 2026-04-01 16:48:18.936  WARN 3144 --- [http-nio-8088-exec-10] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/zxtk_db?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true, version : 1.2.5, lastPacketReceivedIdleMillis : 993242
 2026-04-01 16:48:18.936  WARN 3144 --- [http-nio-8088-exec-10] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/zxtk_db?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true, version : 1.2.5, lastPacketReceivedIdleMillis : 993243
+2026-04-01 16:54:20.499  WARN 3144 --- [http-nio-8088-exec-3] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/zxtk_db?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true, version : 1.2.5, lastPacketReceivedIdleMillis : 254194
+2026-04-01 16:54:20.502  WARN 3144 --- [http-nio-8088-exec-3] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/zxtk_db?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true, version : 1.2.5, lastPacketReceivedIdleMillis : 254198
+2026-04-01 17:01:29.985  WARN 3144 --- [http-nio-8088-exec-7] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/zxtk_db?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true, version : 1.2.5, lastPacketReceivedIdleMillis : 425564
+2026-04-01 17:01:29.985  WARN 3144 --- [http-nio-8088-exec-7] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/zxtk_db?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true, version : 1.2.5, lastPacketReceivedIdleMillis : 429478
+2026-04-01 17:05:15.744  WARN 3144 --- [http-nio-8088-exec-5] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/zxtk_db?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true, version : 1.2.5, lastPacketReceivedIdleMillis : 175959
+2026-04-01 17:05:17.946  WARN 3144 --- [http-nio-8088-exec-8] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required String parameter 'courseType' is not present]
+2026-04-01 17:06:42.681  WARN 3144 --- [http-nio-8088-exec-4] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required String parameter 'courseType' is not present]
+2026-04-01 17:09:08.903  WARN 3144 --- [http-nio-8088-exec-8] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/zxtk_db?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true, version : 1.2.5, lastPacketReceivedIdleMillis : 146214
+2026-04-01 17:09:08.903  WARN 3144 --- [http-nio-8088-exec-8] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/zxtk_db?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true, version : 1.2.5, lastPacketReceivedIdleMillis : 146219
+2026-04-01 17:10:48.720  WARN 3144 --- [http-nio-8088-exec-1] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required String parameter 'courseType' is not present]
+2026-04-01 17:11:49.928  WARN 3144 --- [http-nio-8088-exec-2] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required String parameter 'courseType' is not present]
+2026-04-01 17:12:51.350  WARN 3144 --- [http-nio-8088-exec-2] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required String parameter 'courseType' is not present]
+2026-04-01 17:13:58.507  WARN 3144 --- [http-nio-8088-exec-2] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/zxtk_db?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true, version : 1.2.5, lastPacketReceivedIdleMillis : 66145
+2026-04-01 17:14:03.626  WARN 3144 --- [http-nio-8088-exec-10] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/zxtk_db?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true, version : 1.2.5, lastPacketReceivedIdleMillis : 71266
+2026-04-01 17:14:04.673  WARN 3144 --- [http-nio-8088-exec-6] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required String parameter 'courseType' is not present]
+2026-04-01 17:19:23.262  WARN 3144 --- [http-nio-8088-exec-4] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/zxtk_db?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true, version : 1.2.5, lastPacketReceivedIdleMillis : 304397
+2026-04-01 17:19:23.263  WARN 3144 --- [http-nio-8088-exec-4] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/zxtk_db?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true, version : 1.2.5, lastPacketReceivedIdleMillis : 313743
+2026-04-01 17:25:31.230  INFO 3144 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2026-04-01 17:25:31.232  INFO 3144 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2026-04-01 17:25:31.235  INFO 3144 --- [SpringContextShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2026-04-01 17:25:38.370  INFO 26868 --- [restartedMain] com.example.zxtkxt.ZxtkxtApplication     : Starting ZxtkxtApplication on zsxllch with PID 26868 (C:\Users\zsxll\Desktop\tiku\zxtkxt\target\classes started by zsxll in C:\Users\zsxll\Desktop\tiku)
+2026-04-01 17:25:38.375  INFO 26868 --- [restartedMain] com.example.zxtkxt.ZxtkxtApplication     : No active profile set, falling back to default profiles: default
+2026-04-01 17:25:38.463  INFO 26868 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-04-01 17:25:38.463  INFO 26868 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-04-01 17:25:39.438  INFO 26868 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8088 (http)
+2026-04-01 17:25:39.446  INFO 26868 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-04-01 17:25:39.446  INFO 26868 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.27]
+2026-04-01 17:25:39.525  INFO 26868 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-04-01 17:25:39.526  INFO 26868 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1063 ms
+2026-04-01 17:25:39.657  INFO 26868 --- [restartedMain] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2026-04-01 17:25:39.751  INFO 26868 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2026-04-01 17:25:40.744  INFO 26868 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2026-04-01 17:25:40.899  INFO 26868 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-04-01 17:25:40.936  INFO 26868 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8088 (http) with context path ''
+2026-04-01 17:25:40.939  INFO 26868 --- [restartedMain] com.example.zxtkxt.ZxtkxtApplication     : Started ZxtkxtApplication in 3.019 seconds (JVM running for 4.122)
+2026-04-01 17:26:07.738  INFO 26868 --- [http-nio-8088-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-04-01 17:26:07.738  INFO 26868 --- [http-nio-8088-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-04-01 17:26:07.749  INFO 26868 --- [http-nio-8088-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 10 ms
+2026-04-01 17:29:54.548  WARN 26868 --- [http-nio-8088-exec-6] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/zxtk_db?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true, version : 1.2.5, lastPacketReceivedIdleMillis : 183402
+2026-04-01 17:32:39.661  WARN 26868 --- [http-nio-8088-exec-6] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/zxtk_db?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true, version : 1.2.5, lastPacketReceivedIdleMillis : 81239
+2026-04-01 17:47:14.158  WARN 26868 --- [http-nio-8088-exec-1] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/zxtk_db?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true, version : 1.2.5, lastPacketReceivedIdleMillis : 873117
+2026-04-01 17:49:17.288  WARN 26868 --- [http-nio-8088-exec-3] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/zxtk_db?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true, version : 1.2.5, lastPacketReceivedIdleMillis : 123115
+2026-04-01 17:51:04.960  WARN 26868 --- [http-nio-8088-exec-3] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/zxtk_db?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true, version : 1.2.5, lastPacketReceivedIdleMillis : 107667
+2026-04-01 17:51:04.960  WARN 26868 --- [http-nio-8088-exec-8] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/zxtk_db?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true, version : 1.2.5, lastPacketReceivedIdleMillis : 107665
+2026-04-01 17:52:12.211  WARN 26868 --- [http-nio-8088-exec-8] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/zxtk_db?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true, version : 1.2.5, lastPacketReceivedIdleMillis : 67238
+2026-04-01 17:52:12.211  WARN 26868 --- [http-nio-8088-exec-6] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/zxtk_db?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true, version : 1.2.5, lastPacketReceivedIdleMillis : 67239
+2026-04-01 17:59:49.262  WARN 26868 --- [http-nio-8088-exec-2] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/zxtk_db?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true, version : 1.2.5, lastPacketReceivedIdleMillis : 457038
+2026-04-01 17:59:49.264  WARN 26868 --- [http-nio-8088-exec-2] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/zxtk_db?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true, version : 1.2.5, lastPacketReceivedIdleMillis : 457044
+2026-04-01 17:59:49.265  WARN 26868 --- [http-nio-8088-exec-2] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/zxtk_db?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true, version : 1.2.5, lastPacketReceivedIdleMillis : 457046
+2026-04-02 02:16:03.292  INFO 29832 --- [restartedMain] com.example.zxtkxt.ZxtkxtApplication     : Starting ZxtkxtApplication on zsxllch with PID 29832 (C:\Users\zsxll\Desktop\tiku\zxtkxt\target\classes started by zsxll in C:\Users\zsxll\Desktop\tiku)
+2026-04-02 02:16:03.307  INFO 29832 --- [restartedMain] com.example.zxtkxt.ZxtkxtApplication     : No active profile set, falling back to default profiles: default
+2026-04-02 02:16:03.401  INFO 29832 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-04-02 02:16:03.402  INFO 29832 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-04-02 02:16:05.684  INFO 29832 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8088 (http)
+2026-04-02 02:16:05.696  INFO 29832 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-04-02 02:16:05.696  INFO 29832 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.27]
+2026-04-02 02:16:05.819  INFO 29832 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-04-02 02:16:05.820  INFO 29832 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2418 ms
+2026-04-02 02:16:05.988  INFO 29832 --- [restartedMain] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2026-04-02 02:16:06.132  INFO 29832 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2026-04-02 02:16:07.664  INFO 29832 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2026-04-02 02:16:07.922  WARN 29832 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : Unable to start LiveReload server
+2026-04-02 02:16:07.980  INFO 29832 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2026-04-02 02:16:07.989  INFO 29832 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2026-04-02 02:16:07.993 ERROR 29832 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8088 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8088 or configure this application to listen on another port.
+
+2026-04-02 02:16:07.997  INFO 29832 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2026-04-02 02:16:07.999  INFO 29832 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2026-04-02 02:16:08.000  INFO 29832 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed

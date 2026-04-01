@@ -57,10 +57,10 @@
             <span>模板管理</span>
           </el-menu-item>
 
-<!--          <el-menu-item index="teacherQuestionBank">-->
-<!--              <el-icon><Grid /></el-icon>-->
-<!--              <span>题库管理</span>-->
-<!--          </el-menu-item>-->
+          <el-menu-item index="teacherQuestionBank">
+              <el-icon><Grid /></el-icon>
+              <span>题库管理</span>
+          </el-menu-item>
 
         </el-menu>
 
